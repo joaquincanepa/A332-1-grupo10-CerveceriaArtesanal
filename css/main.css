@@ -125,7 +125,7 @@ p {
     margin: 20px;
 }
 
-/*Esapcio entre los datos del formulario y la carta*/
+/*Espacio entre los datos del formulario y la carta*/
 .formulario {
     padding: 20px;
 }
@@ -407,3 +407,32 @@ footer .box__copyright b:hover {
 .btn-transparent.btn-transparent:hover.btn-transparent:hover a {
     color: #FFF;
 }
+
+
+
+/* principio carousel productos*/
+
+.scroll
+{
+position: relative;
+display: flex;
+overflow: hidden;
+-webkit-mask-image: linear-gradient(90deg,transparent, transparent);
+
+}
+.scroll div
+{
+white-space: nowrap;
+animation: animate;
+display: inline-flex;
+transition: 0.5s;
+}
+
+.scroll div :hover
+{
+background: #4caf50;
+cursor: pointer;
+}
+
+
+
