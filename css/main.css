@@ -417,20 +417,39 @@ footer .box__copyright b:hover {
 position: relative;
 display: flex;
 overflow: hidden;
--webkit-mask-image: linear-gradient(90deg,transparent, transparent);
+-webkit-mask-image: linear-gradient(90deg,transparent,#fff 20%,#fff 80%,transparent);
 
 }
 .scroll div
 {
 white-space: nowrap;
-animation: animate;
+animation: animate 15s linear infinite;
 display: inline-flex;
+margin: 5px;
 transition: 0.5s;
+}
+
+.scroll div p
+{
+text-align: center;
+}
+
+@keyframes animate
+{
+    0%
+    {
+        transform: translateX(100%);
+
+    }
+    100%
+    {
+        transform: translateX(-100%);
+    }
 }
 
 .scroll div :hover
 {
-background: #4caf50;
+background: #d1ee3e;
 cursor: pointer;
 }
 
