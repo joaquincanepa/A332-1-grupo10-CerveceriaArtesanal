@@ -486,6 +486,7 @@ main.bodyproductos {
     padding: 5rem 10rem;
     gap: 1rem;
 }
+
 .cerveceria-informacion {
     display: flex;
     min-height: 18rem;
@@ -546,6 +547,7 @@ main.bodyproductos {
     border: 1px solid rgba(0, 0, 255, 0.2);
     transition: all 0.2s;
 }
+
 /*----------------FIN Sobre nosotros------------------------------------*/
 /*----------Medias querys para sobre nosotros--------------*/
 @media(max-width: 1330px) {
