@@ -11,12 +11,13 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow-x: hidden;
 }
 
 /*Inicio del nav*/
 nav {
-    background-color: #eff0f7c9;
-    box-shadow: 0px 1px 0px #ffffff;
+    background-color: #D2B48C;
+    box-shadow: 0px 1px 0px #552301;
     /*Linea de abajo del nav*/
 }
 
@@ -112,16 +113,18 @@ p {
 
 /*Inicio del espaciado entre los titulos del contacto*/
 .title {
-    width: 80%;
+    width: 100%;
     margin: 120px auto;
 }
 
 .title h1 {
     padding: 20px;
+    text-align: center;
 }
 
 .title p {
     margin: 20px;
+
 }
 
 /*Espacio entre los datos del formulario y la carta*/
@@ -134,9 +137,9 @@ p {
 .formulario,
 .map {
     background: #ffffff86;
-    border: 1px solid rgba(0, 0, 255, 0.2);
+    border: 1px solid rgba(80, 33, 2, 0.692);
     transition: all 0.2s;
-    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+    box-shadow: 12px 12px 2px 1px rgba(80, 33, 2, 0.692);
 }
 
 .carta img,
@@ -151,7 +154,7 @@ p {
 .title h1:hover,
 .formulario:hover,
 .map:hover {
-    box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, 0.2);
+    box-shadow: -12px 12px 2px -1px rgba(80, 33, 2, 0.692);
 }
 
 /*datos del contacto en contacto carta con la info*/
@@ -169,6 +172,10 @@ p {
     box-shadow: 0px 2px 6px rgba(19, 18, 66, 0.07);
 }
 
+
+ .fas fa-star  {
+   color: #d8a122
+}
 /*fIN DE CONTACTO.HTML*/
 
 /*---------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -204,6 +211,8 @@ footer {
     padding-bottom: 1px;
     background-color: #20212283;
     background-size: cover;
+    padding-top: 70px;
+
 }
 
 footer .container_footer {
@@ -211,6 +220,7 @@ footer .container_footer {
     flex-wrap: wrap;
     justify-content: space-around;
     margin: auto;
+    
 }
 
 footer .container_footer .box__footer {
@@ -309,19 +319,19 @@ footer .box__copyright b:hover {
 
 .section-reviews {
     h2 {
-        font-family: LoraRegular;
+        /*font-family: LoraRegular;*/
         font-size: 48px;
         color: white;
     }
 
     h3 {
-        font-family: MontserratRegular;
+         /*font-family: MontserratRegular;*/
         font-size: 20px;
         color: white;
     }
 
     p {
-        font-family: MontserratRegular;
+        font-family: "Inter", sans-serif;
     }
 
     .animation:hover {
@@ -340,10 +350,12 @@ footer .box__copyright b:hover {
 
 /*margenes del inicio*/
 .principal {
-    margin: 120px auto;
+    margin: 120px auto auto;
 }
 
 /**/
+
+
 
 .experiencia {
     width: 80%;
@@ -371,7 +383,7 @@ footer .box__copyright b:hover {
 }
 
 .btn-transparent {
-    background-color: transparent;
+    background-color: #CCA752;
     display: inline-block;
     margin-bottom: 10px;
     padding: 5px 10px;
@@ -381,6 +393,8 @@ footer .box__copyright b:hover {
     overflow: hidden;
     font-size: 0.8rem;
     z-index: 1;
+    border: none;
+    border-radius: 45px;
 }
 
 .btn-transparent.btn-transparent a {
@@ -425,22 +439,31 @@ footer .box__copyright b:hover {
     -webkit-mask-image: linear-gradient(90deg, transparent, #fff 20%, #fff 80%, transparent);
 }
 
-.scroll div :hover {
-    background: #d1ee3e;
+.scroll :hover {
+    background: #caa246;
     cursor: pointer;
 }
 
+/* Ajustes para la corrección */
 .move-card {
     margin-bottom: 20px;
     display: inline-block;
     margin: 0 10px;
     animation: scroll-left 20s linear infinite;
+    width: 60rem;
+    background-color: #FFF;
+    border-radius: 2%;
+}
+
+.card-img-top{
+    height: 200px;
+    object-fit: cover;
 }
 
 
 
 /* Ajustes para las cartas y el contenido dentro de las cartas */
-.card {
+.card, .move-card {
     width: 18rem;
     display: inline-block;
     vertical-align: top;
@@ -557,6 +580,7 @@ main.bodyproductos {
 
     }
 
+
 }
 
 @media(max-width: 1000px) {
@@ -587,6 +611,7 @@ main.bodyproductos {
         width: 100%;
     }
 
+
 }
 
 @media(max-width: 650px) {
@@ -608,4 +633,47 @@ main.bodyproductos {
         font-size: 0.8rem;
     }
 
+/*Agregado para la nueva corrrección*/    
+    .card-img-top
+    {
+        width: 200px;
+    }
+
+    .move-card {
+
+        animation: scroll-left 20s linear infinite;
+
+    }
+
+}
+
+
+.bg-image {
+    background-image: url('../imagenes/img_inicio.webp');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    width: 100%;
+    min-height: 500px;
+    position: relative;
+    padding: 20px;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6); 
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+}
+
+
+.fa-star {
+    color: #ff7300;
 }
