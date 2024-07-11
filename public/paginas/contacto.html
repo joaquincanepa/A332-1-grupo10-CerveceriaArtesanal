@@ -167,6 +167,75 @@
     <script>
         AOS.init();
     </script>
+     <script type="module">
+
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js';
+        import { getFirestore, doc, collection, addDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyAp75p-O1K8JN8xuiPzSunRKlU5Fag9Y7M",
+          authDomain: "cerveceriaartesanal-9d7c7.firebaseapp.com",
+          projectId: "cerveceriaartesanal-9d7c7",
+          storageBucket: "cerveceriaartesanal-9d7c7.appspot.com",
+          messagingSenderId: "656544704388",
+          appId: "1:656544704388:web:07d33d75464c8436ed9fd1",
+          measurementId: "G-4P6PE17L1R"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        
+        // Validacion y envio del formulario Registro
+        
+        const loginForm = document.getElementById("formulario");
+        
+        
+        loginForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+        
+         const {nombreUser,apellidoUser, emailUser, passwordUser } = loginForm.elements;
+         
+          if (!nombreUser.value.trim() || nombreUser.value.lenght <= 2) {
+            alert("Se requiere su nombre");
+            return;
+          }
+        
+          if (!apellidoUser.value.trim() || apellidoUser.value.lenght <= 2) {
+            alert("Se requiere su apellido");
+            return;
+          }
+        
+          if (!emailUser.value.trim() || !isValidEmail(emailUser.value)) {
+            alert("Ingrese un email válido.");
+            return;
+          }
+        
+          if (!passwordUser.value.trim() || passwordUser.value.lenght <= 5) {
+            alert(
+              "La contraseña no puede estar vacía o es corta"
+            );
+            return;
+          }
+        
+          const db = getFirestore(app);
+            // Add a new document in collection "usuarios"
+            const docRef = addDoc(collection(db,"usuarios"),{
+              nombre: nombreUser.value,
+              apellido: apellidoUser.value,
+              email: emailUser.value,
+              password: passwordUser.value
+          });
+        
+          alert("Registro efectuado! Bienvenido" +" "+ nombreUser.value +" " + apellidoUser.value);
+          loginForm.reset();
+        
+          
+        });
+        
+        function isValidEmail(email) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+            </script>
+        
 </body>
 
 </html>

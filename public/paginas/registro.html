@@ -137,7 +137,6 @@
     <!--seccion footer-->
     <!--Footer Section-->
     <!--js bootstrap-->
-    <script src="registro.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -165,18 +164,56 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
-const {nombreUser,apellidoUser, emailUser, passwordUser } = loginForm.elements;
+// Validacion y envio del formulario Registro
+
+const loginForm = document.getElementById("formulario");
+
+
+loginForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+ const {nombreUser,apellidoUser, emailUser, passwordUser } = loginForm.elements;
+ 
+  if (!nombreUser.value.trim() || nombreUser.value.lenght <= 2) {
+    alert("Se requiere su nombre");
+    return;
+  }
+
+  if (!apellidoUser.value.trim() || apellidoUser.value.lenght <= 2) {
+    alert("Se requiere su apellido");
+    return;
+  }
+
+  if (!emailUser.value.trim() || !isValidEmail(emailUser.value)) {
+    alert("Ingrese un email válido.");
+    return;
+  }
+
+  if (!passwordUser.value.trim() || passwordUser.value.lenght <= 5) {
+    alert(
+      "La contraseña no puede estar vacía o es corta"
+    );
+    return;
+  }
+
+  const db = getFirestore(app);
     // Add a new document in collection "usuarios"
-    const docRef = await addDoc(collection(db,"usuarios"),{
+    const docRef = addDoc(collection(db,"usuarios"),{
       nombre: nombreUser.value,
       apellido: apellidoUser.value,
       email: emailUser.value,
       password: passwordUser.value
   });
 
+  alert("Registro efectuado! Bienvenido" +" "+ nombreUser.value +" " + apellidoUser.value);
+  loginForm.reset();
 
+  
+});
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
     </script>
 
 

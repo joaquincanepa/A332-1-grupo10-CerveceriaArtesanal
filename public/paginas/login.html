@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--CSS-->
     <link rel="stylesheet" href="../css/main.css">
-    <script type="module" src="conexionFirebase.js"></script>
-    <script type="module" src="login.js"></script>
     <title>Parcial Laboratorio 3 | Login</title>
 
 </head>
@@ -139,7 +137,25 @@
     <!--seccion footer-->
     <!--Footer Section-->
     <!--js bootstrap-->
-    <script src="login.js"></script>
+    <script type="module" src="login.js">
+/* import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js';
+import { getFirestore, doc, collection, addDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAp75p-O1K8JN8xuiPzSunRKlU5Fag9Y7M",
+  authDomain: "cerveceriaartesanal-9d7c7.firebaseapp.com",
+  projectId: "cerveceriaartesanal-9d7c7",
+  storageBucket: "cerveceriaartesanal-9d7c7.appspot.com",
+  messagingSenderId: "656544704388",
+  appId: "1:656544704388:web:07d33d75464c8436ed9fd1",
+  measurementId: "G-4P6PE17L1R"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app); */
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
