@@ -19,9 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--CSS-->
     <link rel="stylesheet" href="../css/main.css">
-    <script type="module" src="conexionFirebase.js"></script>
-    <script type="module" src="login.js"></script>
-    <title>Parcial Laboratorio 3 | Login</title>
+    
+    <title>Parcial Laboratorio 3 | Registro</title>
 
 </head>
 
@@ -57,7 +56,7 @@
         </nav>
     </header>
     <main>
-        <!--titulo login-->
+        <!--titulo registro-->
         <section class="title container text-center" data-aos="fade-up">
             <article class="row">
                 <div class="col-12">
@@ -65,46 +64,45 @@
                 </div>
             </article>
         </section>
-        <!-- Inicio Form login-->
+        <!-- Inicio Form Registro-->
         <section class="reserva container" data-aos="fade-up">
             <article class="row">
                 <div class="col-12">
                     <form class="formulario" id="formulario">
                         <div class="col-12 text-start">
-                            <h2>Login - Ingrese sus datos</h2>
+                            <h2>Registro - Ingrese sus datos</h2>
                             <hr>
                         </div>
                         <div class="row">
-                          <!--  <div class="col-12 col-md-6 mb-3">
+                            <div class="col-12 col-md-6 mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="input" id="nombre" name="nombre" 
+                                <input type="text" class="input" id="nombre" name="nombreUser" 
                                 placeholder="Su nombre">
                             </div>
                             <div class="col-12 col-md-6 mb-3">
                                 <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" class="input" id="apellido" name="apellido" 
-                                placeholder="Su Apellido"> -->
+                                <input type="text" class="input" id="apellido" name="apellidoUser" 
+                                placeholder="Su Apellido">
                             </div>
                             <div class="col-12 col-md-6 mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="input" id="email"
-                                    placeholder="example@gmail.com" name="email">
+                                    placeholder="example@gmail.com" name="emailUser">
                             </div>
                             <div class="col-12 col-md-6 mb-2">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input class="input" type="password" id="password" name="password"
+                                <input class="input" type="password" id="password" name="passwordUser"
                                 placeholder="Ingrese su contraseña">
                             </div>
                         </div>
-                         <button type="submit" id="botonSubmit" class="btn-principal col-2 ">Ingresar</button>
-                         <button type="button" onclick="location.href='registro.html'" id="botonRegistro" class="btn-principal col-2 ">Registrarse</button>
-                         <button type="button"  onclick="location.href='../index.html'"  class="btn-principal col-2 ">Cancelar</button>
+                        <button type="submit" id="botonSubmit" class="btn-principal col-2">Regitrarse</button>
+                        <button type="button"  onclick="location.href='../index.html'" class="btn-principal col-2">Cancelar</button>
                     </form>
                 </div>
             </article>
         </section>
     </main>
-    <!-- Fin Form login-->
+    <!-- Fin Form Registro-->
     <!--seccion footer-->
     <footer>
         <div class="container_footer" data-aos="fade-up">
@@ -139,7 +137,7 @@
     <!--seccion footer-->
     <!--Footer Section-->
     <!--js bootstrap-->
-    <script src="login.js"></script>
+    <script src="registro.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -149,6 +147,38 @@
     <script>
         AOS.init();
     </script>
+
+    <script type="module">
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js';
+import { getFirestore, doc, collection, addDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAp75p-O1K8JN8xuiPzSunRKlU5Fag9Y7M",
+  authDomain: "cerveceriaartesanal-9d7c7.firebaseapp.com",
+  projectId: "cerveceriaartesanal-9d7c7",
+  storageBucket: "cerveceriaartesanal-9d7c7.appspot.com",
+  messagingSenderId: "656544704388",
+  appId: "1:656544704388:web:07d33d75464c8436ed9fd1",
+  measurementId: "G-4P6PE17L1R"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+const {nombreUser,apellidoUser, emailUser, passwordUser } = loginForm.elements;
+    // Add a new document in collection "usuarios"
+    const docRef = await addDoc(collection(db,"usuarios"),{
+      nombre: nombreUser.value,
+      apellido: apellidoUser.value,
+      email: emailUser.value,
+      password: passwordUser.value
+  });
+
+
+
+    </script>
+
 
 </body>
 
