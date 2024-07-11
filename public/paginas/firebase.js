@@ -15,7 +15,3 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-export const getUsuarios = () =>
-    {
-        return  getDocs(collection(db,"usuarios"));
-    }

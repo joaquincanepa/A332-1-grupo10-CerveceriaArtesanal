@@ -70,7 +70,7 @@
         <section class="form container" data-aos="fade-up">
             <article class="row">
                 <div class="col-12 col-lg-6">
-                    <form class="formulario">
+                    <form class="formulario" name="formulario" id="formulario">
                         <div class="col-12 text-start">
                             <h3>Datos del Cliente</h3>
                             <p>Por favor complete con sus datos.</p>
@@ -78,20 +78,22 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="input" id="name" placeholder="Nombre">
+                            <input type="text" class="input" id="nombreCon" name="nombreCon" placeholder="Nombre">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="input" id="email" placeholder="cerveceriaArtesanalUTN@gmail.com">
+                            <label for="email" class="form-label" >Email</label>
+                            <input type="email" class="input" id="emailCon" name="emailCon" 
+                            placeholder="cerveceriaArtesanalUTN@gmail.com">
                         </div>
                         <div class="mb-3">
                             <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="tel" class="input" id="telefono" placeholder="11 22 33 44 55">
+                            <input type="tel" class="input" id="telefonoCon" name="telefonoCon"
+                             placeholder="11 22 33 44 55">
                         </div>
                         <div class="mb-3">
                             <label for="textarea" class="form-label">Dejenos su mensaje</label>
-                            <textarea class="input text-area" id="textarea" placeholder="Deje su mensaje"
-                                rows="3"></textarea>
+                            <textarea class="input text-area" placeholder="Deje su mensaje"
+                                rows="3" name="mensajeCon" id="mensajeCon"></textarea>
                         </div>
                         <button type="submit" class="btn-principal">Enviar</button>
                     </form>
@@ -184,49 +186,44 @@
         
         const app = initializeApp(firebaseConfig);
         
-        // Validacion y envio del formulario Registro
+        // Validacion y envio del formulario Contacto
         
-        const loginForm = document.getElementById("formulario");
+        const contactoForm = document.getElementById("formulario");
         
         
-        loginForm.addEventListener("submit", function (event) {
+        contactoForm.addEventListener("submit", function (event) {
           event.preventDefault();
         
-         const {nombreUser,apellidoUser, emailUser, passwordUser } = loginForm.elements;
+         const {nombreCon, emailCon, telefonoCon, mensajeCon } = contactoForm.elements;
          
-          if (!nombreUser.value.trim() || nombreUser.value.lenght <= 2) {
+          if (!nombreCon.value.trim() || nombreCon.value.lenght <= 2) {
             alert("Se requiere su nombre");
             return;
           }
         
-          if (!apellidoUser.value.trim() || apellidoUser.value.lenght <= 2) {
-            alert("Se requiere su apellido");
-            return;
-          }
         
-          if (!emailUser.value.trim() || !isValidEmail(emailUser.value)) {
+          if (!emailCon.value.trim() || !isValidEmail(emailCon.value)) {
             alert("Ingrese un email válido.");
             return;
           }
-        
-          if (!passwordUser.value.trim() || passwordUser.value.lenght <= 5) {
-            alert(
-              "La contraseña no puede estar vacía o es corta"
-            );
+
+          if (!telefonoCon.value.trim() || !isNaN(telefonoCon)) {
+            alert("Se requiere un telefóno válido");
             return;
-          }
+          }        
+
         
           const db = getFirestore(app);
-            // Add a new document in collection "usuarios"
-            const docRef = addDoc(collection(db,"usuarios"),{
-              nombre: nombreUser.value,
-              apellido: apellidoUser.value,
-              email: emailUser.value,
-              password: passwordUser.value
+            // Add a new document in collection contactos
+            const docRef = addDoc(collection(db,"contactos"),{
+              nombre: nombreCon.value,
+              email: emailCon.value,
+              telefono: telefonoCon.value,
+              mensaje: mensajeCon.value
           });
         
-          alert("Registro efectuado! Bienvenido" +" "+ nombreUser.value +" " + apellidoUser.value);
-          loginForm.reset();
+          alert("Gracias por dejar su contacto. A la brevedad lo conctactaremos");
+          contactoForm.reset();
         
           
         });
