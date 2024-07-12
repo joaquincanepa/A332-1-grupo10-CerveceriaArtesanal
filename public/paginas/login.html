@@ -17,6 +17,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!--Animated animacion-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!--SweetAlert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--CSS-->
     <link rel="stylesheet" href="../css/main.css">
     <title>Parcial Laboratorio 3 | Login</title>
@@ -93,6 +95,10 @@
                                 <input class="input" type="password" id="passwordLog" name="passwordLog"
                                 placeholder="Ingrese su contraseña">
                             </div>
+                            <div class="col-12 col-md-6 mb-3" class="box-visible">
+                                <input type="checkbox" id="visible">
+                                <label for="visible">Mostrar Contraseña</label>
+                            </div>
                         </div>
                         <div class="col-2 col-md-6 mb-6">
                             <button type="submit" id="botonSubmit" class="btn-principal  ">Ingresar</button>
@@ -157,83 +163,7 @@
         AOS.init();
     </script>
 
-<script type="module">
-  
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js';
-    import { getFirestore, doc, collection, addDoc, query, where, setDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
-    
-    const firebaseConfig = {
-      apiKey: "AIzaSyAp75p-O1K8JN8xuiPzSunRKlU5Fag9Y7M",
-      authDomain: "cerveceriaartesanal-9d7c7.firebaseapp.com",
-      projectId: "cerveceriaartesanal-9d7c7",
-      storageBucket: "cerveceriaartesanal-9d7c7.appspot.com",
-      messagingSenderId: "656544704388",
-      appId: "1:656544704388:web:07d33d75464c8436ed9fd1",
-      measurementId: "G-4P6PE17L1R"
-    };
-    
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    
-    // Validacion y envio del formulario de reserva
-    
-    const loginForm = document.getElementById("formulario");
-    
-    
-    loginForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-    
-     const {emailLog, passwordLog} = loginForm.elements;
-     
-      if (!emailLog.value.trim() || !isValidEmail(emailLog.value)) {
-        alert("Ingrese un email válido.");
-        return;
-      }
-
-      if (!passwordLog.value.trim() || (passwordLog.value.lenght <= 5)) {
-        alert("Ingrese una contraseña válida.");
-        return;
-      }
-
-      validarIngreso(emailLog.value, passwordLog.value);
-
-
-    });
-    
-     function validarIngreso(email, password)
-      {
-
-      const datosObtenidos = getDataDb(email, password);
-      console.log(datosObtenidos);
-     
-      if(datosObtenidos != null)
-      {;
-            alert("Login efectuado con éxito");
-            loginForm.reset();
-      }
-      else
-      {
-        alert("No se ha podido establecer la conexión");
-      }
-      }
-
-
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-   async function getDataDb(emailCon, passwordCon)
-    {
-    let datos = null;
-    const q = query(collection(db, "usuarios"), where("email", "==", emailCon), where("password", "==", passwordCon));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-   datos = doc.data();
-    });
-    return datos;
-    }
-    </script>
+<script type="module" src="../js/login.js"> </script>
 
 </body>
 

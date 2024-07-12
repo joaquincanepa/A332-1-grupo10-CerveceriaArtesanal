@@ -18,6 +18,8 @@
     <!--Animated animacion-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--CSS-->
+    <!--SweetAlert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../css/main.css">
     <title>Parcial Laboratorio 3 | Reserva</title>
 </head>
@@ -183,94 +185,7 @@
     <script>
         AOS.init();
     </script>
-  <script type="module">
-
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js';
-    import { getFirestore, doc, collection, addDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
-    
-    const firebaseConfig = {
-      apiKey: "AIzaSyAp75p-O1K8JN8xuiPzSunRKlU5Fag9Y7M",
-      authDomain: "cerveceriaartesanal-9d7c7.firebaseapp.com",
-      projectId: "cerveceriaartesanal-9d7c7",
-      storageBucket: "cerveceriaartesanal-9d7c7.appspot.com",
-      messagingSenderId: "656544704388",
-      appId: "1:656544704388:web:07d33d75464c8436ed9fd1",
-      measurementId: "G-4P6PE17L1R"
-    };
-    
-    const app = initializeApp(firebaseConfig);
-    
-    // Validacion y envio del formulario de reserva
-    
-    const reservaForm = document.getElementById("formulario");
-    
-    
-    reservaForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-    
-     const {nombreRes, emailRes, telefonoRes, cantidadPerRes, fechaRes, horaRes, tipoMesaRes, preferenciaRes, 
-        comentarioRes} = reservaForm.elements;
-     
-      if (!nombreRes.value.trim() || nombreRes.value.lenght <= 2) {
-        alert("Se requiere su nombre");
-        return;
-      }
-
-      if (!emailRes.value.trim() || !isValidEmail(emailRes.value)) {
-        alert("Ingrese un email válido.");
-        return;
-      }
-
-      if (!telefonoRes.value.trim() || telefonoRes.value.lenght <= 2 || !isNaN(telefonoRes) ) {
-        alert("Ingrese un telefono válido.");
-        return;
-      }
-    
-      if (cantidadPerRes.value.lenght <= 0) {
-        alert("Ingrese un número válido de personas");
-        return;
-      }
-    
-      if (!fechaRes.value.trim()) {
-        alert(
-          "Ingrese una fecha válida"
-        );
-        return;
-      }
-
-          
-      if (!horaRes.value.trim()) {
-        alert(
-          "Ingrese una fecha válida"
-        );
-        return;
-      }
-    
-      const db = getFirestore(app);
-        // Add a new document in collection "reservas"
-        const docRef = addDoc(collection(db,"reservas"),{
-          nombre: nombreRes.value,
-          email: emailRes.value,
-          telefono: telefonoRes.value,
-          cantidad: cantidadPerRes.value,
-          fecha: fechaRes.value,
-          hora: horaRes.value,
-          tipo : tipoMesaRes.value,
-          preferencia: preferenciaRes.value,
-          comentarios: comentarioRes.value
-
-      });
-    
-      alert("Reserva efectuada con éxito: " +nombreRes.value+", "+ fechaRes.value +", " + horaRes.value);
-      reservaForm.reset();
-    
-      
-    });
-    
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-        </script>
+    <script type="module" src="../js/reserva.js"></script>
 
 </body>
 
