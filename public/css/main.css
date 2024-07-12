@@ -667,6 +667,8 @@ main.bodyproductos {
     min-height: 500px;
     position: relative;
     padding: 20px;
+    border-radius: 15px;
+    
 }
 
 .text-overlay {
@@ -687,3 +689,18 @@ main.bodyproductos {
 .fa-star {
     color: #ff7300;
 }
+
+
+.bg-imagen-productos {
+    background-image: url('../imagenes/sobrenostros3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 500px;
+    padding: 20px 0; 
+    margin: 0; 
+    margin-bottom: 50px; 
+    border-radius: 15px;
+}
+
