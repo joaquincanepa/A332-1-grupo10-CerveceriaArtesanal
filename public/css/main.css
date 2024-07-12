@@ -645,6 +645,16 @@ main.bodyproductos {
 
     }
 
+    #maps
+    {
+        width: 200px;  
+    }
+
+    #textoCorreo
+    {
+        font-size: 12px;
+    }
+
 }
 
 
