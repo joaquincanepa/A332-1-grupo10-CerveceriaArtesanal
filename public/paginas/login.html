@@ -85,12 +85,12 @@
                             </div>-->
                             <div class="col-12 col-md-6 mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="input" id="email"
-                                    placeholder="example@gmail.com" name="email">
+                                <input type="email" class="input" id="emailLog"
+                                    placeholder="example@gmail.com" name="emailLog">
                             </div>
                             <div class="col-12 col-md-6 mb-2">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input class="input" type="password" id="password" name="password"
+                                <input class="input" type="password" id="passwordLog" name="passwordLog"
                                 placeholder="Ingrese su contraseña">
                             </div>
                         </div>
@@ -143,24 +143,6 @@
     <!--seccion footer-->
     <!--Footer Section-->
     <!--js bootstrap-->
-    <script type="module" src="login.js">
-/* import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js';
-import { getFirestore, doc, collection, addDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAp75p-O1K8JN8xuiPzSunRKlU5Fag9Y7M",
-  authDomain: "cerveceriaartesanal-9d7c7.firebaseapp.com",
-  projectId: "cerveceriaartesanal-9d7c7",
-  storageBucket: "cerveceriaartesanal-9d7c7.appspot.com",
-  messagingSenderId: "656544704388",
-  appId: "1:656544704388:web:07d33d75464c8436ed9fd1",
-  measurementId: "G-4P6PE17L1R"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app); */
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -170,6 +152,84 @@ const db = getFirestore(app); */
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+
+<script type="module">
+  
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js';
+    import { getFirestore, doc, collection, addDoc, query, where, setDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyAp75p-O1K8JN8xuiPzSunRKlU5Fag9Y7M",
+      authDomain: "cerveceriaartesanal-9d7c7.firebaseapp.com",
+      projectId: "cerveceriaartesanal-9d7c7",
+      storageBucket: "cerveceriaartesanal-9d7c7.appspot.com",
+      messagingSenderId: "656544704388",
+      appId: "1:656544704388:web:07d33d75464c8436ed9fd1",
+      measurementId: "G-4P6PE17L1R"
+    };
+    
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    
+    // Validacion y envio del formulario de reserva
+    
+    const loginForm = document.getElementById("formulario");
+    
+    
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+    
+     const {emailLog, passwordLog} = loginForm.elements;
+     
+      if (!emailLog.value.trim() || !isValidEmail(emailLog.value)) {
+        alert("Ingrese un email válido.");
+        return;
+      }
+
+      if (!passwordLog.value.trim() || (passwordLog.value.lenght <= 5)) {
+        alert("Ingrese una contraseña válida.");
+        return;
+      }
+
+      validarIngreso(emailLog.value, passwordLog.value);
+
+
+    });
+    
+     function validarIngreso(email, password)
+      {
+
+      const datosObtenidos = getDataDb(email, password);
+      console.log(datosObtenidos);
+     
+      if(datosObtenidos != null)
+      {;
+            alert("Login efectuado con éxito");
+            loginForm.reset();
+      }
+      else
+      {
+        alert("No se ha podido establecer la conexión");
+      }
+      }
+
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+   async function getDataDb(emailCon, passwordCon)
+    {
+    let datos = null;
+    const q = query(collection(db, "usuarios"), where("email", "==", emailCon), where("password", "==", passwordCon));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+   datos = doc.data();
+    });
+    return datos;
+    }
     </script>
 
 </body>
